@@ -107,7 +107,7 @@ const Profile = () => {
                       </AccordionSummary>
                       <AccordionDetails>
                         <Typography variant="p">
-                          I need to shop on {currentUser.schedule}
+                          I need to shop on {currentUser.schedule || `---`}
                         </Typography>
                       </AccordionDetails>
                     </Accordion>
@@ -153,18 +153,18 @@ const Profile = () => {
 
                       {/* {currentUser.payments.map((payment, index) => 
                        ( */}
-                      {currentUser.payments[0].moneyFrom === currentUser.name ? (
+                      {currentUser.payments.length != 0  && currentUser.payments[0]?.moneyFrom === currentUser.name ? (
                         <AccordionDetails>
                           <Typography variant="p">
-                            I have to pay {currentUser.payments[0].moneyTo}{" "}
-                            {currentUser.payments[0].amount.toFixed(2)} tk
+                            I have to pay {currentUser.payments[0]?.moneyTo || `nobody`}{" "}
+                            {currentUser.payments[0]?.amount.toFixed(2) || `any `} tk
                           </Typography>
                         </AccordionDetails>
                       ) : (
                         <AccordionDetails>
                           <Typography variant="p">
-                            {currentUser.payments[0].moneyFrom} will pay you{" "}
-                            {currentUser.payments[0].amount.toFixed(2)} tk
+                            {currentUser.payments[0]?.moneyFrom || `Nobody`} will pay you{" "}
+                            {currentUser.payments[0]?.amount.toFixed(2) || `any `} tk
                           </Typography>
                         </AccordionDetails>
                       )}

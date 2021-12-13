@@ -21,7 +21,7 @@ import { hr } from "date-fns/locale";
 const Schedule = () => {
   const [, token] = document.cookie.split("=");
   const [schedules, setSchedules] = useState([]);
-
+  const currentUser = JSON.parse(window.localStorage.getItem("currentUser"));
   const [state, setState] = useState("");
 
   const handlechange = (e, { value }) => {
@@ -71,7 +71,8 @@ const Schedule = () => {
 
   const handleChange = (newValue) => {
     console.log(newValue.toLocaleDateString());
-    setDate(newValue.toLocaleDateString());
+  const currentUser = JSON.parse(window.localStorage.getItem("currentUser"));
+  setDate(newValue.toLocaleDateString());
     //console.log(date)
     // setDate(value.toLocaleDateString())
   };
@@ -116,7 +117,7 @@ const Schedule = () => {
     textAlign:'center'}}>
 
         <div >
-          <Button variant="contained" onClick={handleClickOpen}>
+          <Button variant="contained" onClick={handleClickOpen} disabled={currentUser.role === 'member'}>
             <h5 style={{ marginTop: "10px", width: "120px" }}>
               Insert schedule
             </h5>
